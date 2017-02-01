@@ -1,6 +1,7 @@
 package com.dotmarketing.util;
 
 import java.io.File;
+import java.io.FileFilter;
 import java.io.FileOutputStream;
 import java.io.FilenameFilter;
 import java.io.IOException;
@@ -163,27 +164,18 @@ public class FileUtil {
 		}
 	}
 
-	/**
-	 * Delete directories recursively including the initial directory, taking into account symbolic links
-	 * @param path path to be file/directory to be deleted
-	 * @throws IOException
-	 */
-	public static void deleteDir(String path) throws IOException{
-		// initial directory
-		Path directory = Paths.get(path);
-		Files.walkFileTree(directory, new SimpleFileVisitor<Path>() {
-		   @Override
-		   public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-		       Files.delete(file);
-		       return FileVisitResult.CONTINUE;
-		   }
-		   @Override
-		   public FileVisitResult postVisitDirectory(Path dir, IOException exc) throws IOException {
-		       Files.delete(dir);
-		       return FileVisitResult.CONTINUE;
-		   }
-		});
-	}
+    public static FileFilter getOnlyFolderFileFilter() {
+        return new FileFilter() {
+            @Override
+            public boolean accept(File pathname) {
+                if ( pathname.isDirectory() ){
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        };
+    }
 }
 
 final class PNGFileNameFilter implements FilenameFilter {
