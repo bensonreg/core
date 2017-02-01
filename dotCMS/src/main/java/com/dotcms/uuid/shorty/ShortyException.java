@@ -14,5 +14,4 @@ public class ShortyException extends DotStateException {
 
     }
 
-
 }
