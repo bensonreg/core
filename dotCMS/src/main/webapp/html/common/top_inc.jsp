@@ -22,6 +22,7 @@ THIS FILE AND ITS INCLUDES
 	response.setHeader("Expires","01 Jan 2000 00:00:00 GMT");
 
 %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:bi="urn:bi" xmlns:csp="urn:csp">
@@ -38,7 +39,7 @@ THIS FILE AND ITS INCLUDES
 	<title>dotCMS : <%= LanguageUtil.get(pageContext, "Enterprise-Web-Content-Management") %></title>
 
 	<style type="text/css">
-        @import "/html/js/dojo/release/dojo/dijit/themes/dijit.css";
+        @import "<%=dojoPath %>/dijit/themes/dijit.css";
         @import "/html/css/dijit-dotcms/dotcms.css?b=<%= ReleaseInfo.getVersion() %>";
 	</style>
 
