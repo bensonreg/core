@@ -43,33 +43,6 @@
         cTrail.add(new CrumbTrailEntry(LanguageUtil.get(pageContext, "com.dotcms.repackage.javax.portlet.title." + portletId1), null));
         
         request.setAttribute(com.dotmarketing.util.WebKeys.CMS_CRUMBTRAIL_OPTIONS, cTrail);
-    } else if (portletId1.equals("html-pages")) {
-        IHTMLPage htmlpage;
-        if (request.getAttribute(com.dotmarketing.util.WebKeys.HTMLPAGE_EDIT)!=null) {
-            htmlpage = (IHTMLPage) request.getAttribute(com.dotmarketing.util.WebKeys.HTMLPAGE_EDIT);
-        }
-        else {
-            htmlpage = (IHTMLPage) InodeFactory.getInode(request.getParameter("inode"),IHTMLPage.class);
-        }
-        java.util.Map params = new java.util.HashMap();
-        params.put("struts_action", new String[] {"/ext/htmlpages/view_htmlpages"});
-        String portlet1Referer = com.dotmarketing.util.PortletURLUtil.getActionURL(request, WindowState.MAXIMIZED.toString(), params);
-        portlet1Referer = UtilMethods.encodeURL(portlet1Referer);
-        
-
-        params = new HashMap();
-        String crumbTrailReferer = com.dotmarketing.util.PortletURLUtil.getActionURL(request, WindowState.MAXIMIZED.toString(), params);
-        cTrail.add(new CrumbTrailEntry(LanguageUtil.get(pageContext, "com.dotcms.repackage.javax.portlet.title." + portletId1), crumbTrailReferer + "&referer=" + portlet1Referer));
-        
-        request.setAttribute(com.dotmarketing.util.WebKeys.CMS_CRUMBTRAIL_OPTIONS, cTrail);
-        
-        if (referer.contains("/ext/htmlpages/preview_htmlpage")) {
-            cTrail.add(new CrumbTrailEntry(LanguageUtil.get(pageContext, "modes.Preview"), "javascript: cancelEdit();"));
-        }
-        
-        cTrail.add(new CrumbTrailEntry(LanguageUtil.get(pageContext, "edit-htmlpage"), null));
-        
-        request.setAttribute(com.dotmarketing.util.WebKeys.CMS_CRUMBTRAIL_OPTIONS, cTrail);
     } else if (portletId1.equals("site-browser")) {
         IHTMLPage htmlpage;
         if (request.getAttribute(com.dotmarketing.util.WebKeys.HTMLPAGE_EDIT)!=null) {

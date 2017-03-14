@@ -328,6 +328,8 @@ public class PortletRequestProcessor extends StxxTilesRequestProcessor {
 
 		RenderRequest renderRequest =
 			(RenderRequest)req.getAttribute(WebKeys.JAVAX_PORTLET_REQUEST);
+		
+		Logger.error(this, "JAVAX PORTLET RESPONSE " + req.getAttribute(WebKeys.JAVAX_PORTLET_RESPONSE));
 
 		RenderResponse renderResponse =
 			(RenderResponse)req.getAttribute(WebKeys.JAVAX_PORTLET_RESPONSE);

@@ -92,7 +92,7 @@ if(request.getParameter(WebKeys.IN_FRAME)!=null){
 					<input type="hidden" name="selectedStructure" value="<%=selectedStructure%>">
 					<input type="hidden" name="cmd" value="<%=Constants.ADD%>">
 					<input type="hidden" name="subcmd" value="">
-					<input type="hidden" name="redirect" value="<portlet:renderURL><portlet:param name="struts_action" value="/ext/files/view_files" /></portlet:renderURL>">
+					<input type="hidden" name="redirect" value="<portlet:renderURL><portlet:param name="struts_action" value="/ext/browser/view_browser" /></portlet:renderURL>">
 			 		<input type="hidden" name="categories" value="">
 					<html:hidden property="maxSize" />
 					<html:hidden property="maxWidth" />

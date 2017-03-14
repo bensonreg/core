@@ -7,7 +7,6 @@
 	
 	<portlet id="EXT_1" struts-path="ext/inodes" narrow="true" />
 	<portlet id="EXT_2" struts-path="ext/banners" />
-	<portlet id="files-legacy" struts-path="ext/files" narrow="true"/>
 	<portlet id="categories" struts-path="ext/categories"  narrow="true"  />
 	<portlet id="folders" struts-path="ext/folders" />
 	<portlet id="site-browser" struts-path="ext/browser" />
@@ -17,7 +16,6 @@
 	<!-- END: 	PORTLET CONTENT PUBLISHING FRAMEWORK -->
 	<portlet id="containers" struts-path="ext/containers" narrow="true"/>
 	<portlet id="templates" struts-path="ext/templates" narrow="true"/>
-	<portlet id="html-pages" struts-path="ext/htmlpages" narrow="true"/>
 	<portlet id="director" struts-path="ext/director" />
 	<portlet id="links" struts-path="ext/links" narrow="true"/>
 	<portlet id="workflow" struts-path="ext/workflows" />

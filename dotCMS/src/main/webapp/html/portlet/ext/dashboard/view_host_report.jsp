@@ -748,14 +748,6 @@ try {
 	}
 
 	function viewPages(){
-		var URL = '<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>">\
-		          <portlet:param name="struts_action" value="/ext/htmlpages/view_htmlpages" />\
-			      </portlet:actionURL>&hostId={hostIdentifier}';
-		var href = dojo.replace(URL, { hostIdentifier: '<%=hostId%>'})
-	    window.location=href;	
-	}
-
-	function viewPages(){
 		var URL = '<%=pagesURL%>&hostId={hostIdentifier}';
 		var href = dojo.replace(URL, { hostIdentifier: '<%=hostId%>'})
 	    window.location=href;	
