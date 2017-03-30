@@ -2,6 +2,7 @@ package com.dotcms.contenttype.business;
 
 import java.util.List;
 
+import com.dotcms.contenttype.exception.NotFoundInDbException;
 import com.dotcms.contenttype.model.field.BinaryField;
 import com.dotcms.contenttype.model.field.CategoryField;
 import com.dotcms.contenttype.model.field.CheckboxField;
@@ -28,12 +29,23 @@ import com.dotcms.contenttype.model.field.TextAreaField;
 import com.dotcms.contenttype.model.field.TimeField;
 import com.dotcms.contenttype.model.field.WysiwygField;
 import com.dotcms.contenttype.model.type.ContentType;
+import com.dotcms.contenttype.transform.contenttype.StructureTransformer;
 import com.dotcms.repackage.com.google.common.collect.ImmutableList;
 import com.dotmarketing.business.APILocator;
+import com.dotmarketing.business.CacheLocator;
 import com.dotmarketing.business.DotStateException;
+import com.dotmarketing.business.PermissionAPI;
 import com.dotmarketing.business.PermissionLevel;
+import com.dotmarketing.cache.FieldsCache;
 import com.dotmarketing.exception.DotDataException;
 import com.dotmarketing.exception.DotSecurityException;
+import com.dotmarketing.portlets.contentlet.business.ContentletAPI;
+import com.dotmarketing.portlets.structure.factories.StructureFactory;
+import com.dotmarketing.portlets.structure.model.Structure;
+import com.dotmarketing.services.ContentletMapServices;
+import com.dotmarketing.services.ContentletServices;
+import com.dotmarketing.services.StructureServices;
+import com.dotmarketing.util.UtilMethods;
 import com.liferay.portal.model.User;
 
 
@@ -47,16 +59,47 @@ public class FieldAPIImpl implements FieldAPI {
       TabDividerField.class, TagField.class, TextAreaField.class, TimeField.class,
       WysiwygField.class);
 
-  FieldFactory fac = new FieldFactoryImpl();
+  private PermissionAPI perAPI = APILocator.getPermissionAPI();
+  private ContentletAPI conAPI = APILocator.getContentletAPI();
+
+  private FieldFactory fac = new FieldFactoryImpl();
 
   @Override
 	public Field save(Field field, User user) throws DotDataException, DotSecurityException {
-		ContentTypeAPI tapi = APILocator.getContentTypeAPI(user );
+		ContentTypeAPI tapi = APILocator.getContentTypeAPI(user);
 		ContentType type = tapi.find(field.contentTypeId()) ;
-		APILocator.getPermissionAPI().checkPermission(type, PermissionLevel.PUBLISH, user);
-		
+		perAPI.checkPermission(type, PermissionLevel.PUBLISH, user);
 
-		return fac.save(field);
+	    Field oldField = null;
+	    if (UtilMethods.isSet(field.id())) {
+	    	oldField = fac.byId(field.id());
+	    }
+
+		Field result = fac.save(field);
+
+
+		Structure structure = new StructureTransformer(type).asStructure();
+
+        StructureServices.removeStructureFile(structure);
+
+        //Refreshing permissions
+        if(field instanceof HostFolderField){
+        	perAPI.resetChildrenPermissionReferences(structure);
+        }
+
+        //http://jira.dotmarketing.net/browse/DOTCMS-5178
+        if(oldField != null && ((!oldField.indexed() && field.indexed()) || (oldField.indexed() && !field.indexed()))){
+          // rebuild contentlets indexes
+          conAPI.reindex(structure);
+        }
+
+        if (field instanceof ConstantField) {
+            ContentletServices.removeContentletFile(structure);
+            ContentletMapServices.removeContentletMapFile(structure);
+            conAPI.refresh(structure);
+        }
+
+        return result;
 	}
   
   @Override
