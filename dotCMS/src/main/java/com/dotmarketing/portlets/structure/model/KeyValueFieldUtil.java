@@ -6,7 +6,7 @@ import java.util.Map;
  * Utility class to handle Key Value field
  *
  * @author Roger
- * @deprecated Please use the one in the com.dotcms.contenttype.util package
+ * @deprecated Please use the one in the: com.dotcms.contenttype.util package
  */
 public class KeyValueFieldUtil {
 
