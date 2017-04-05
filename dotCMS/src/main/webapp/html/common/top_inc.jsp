@@ -39,7 +39,7 @@ THIS FILE AND ITS INCLUDES
 
 	<style type="text/css">
    		@import "<%=dojoPath%>/dijit/themes/dijit.css";
-        @import "/html/css/dijit-dotcms/dotcms.css?b=<%= ReleaseInfo.getVersion() %>";
+        @import "/html/css/dijit-dotcms/dotcms.css";
 	</style>
 
 	<!--[if IE]>
@@ -76,18 +76,18 @@ THIS FILE AND ITS INCLUDES
 
 	<script type="text/javascript" src="/html/js/log4js/log4javascript.js"></script>
 	<script type="text/javascript" src="/html/js/log4js/dotcms-log4js.js"></script>
-	<script type="text/javascript" src="/html/js/dojo/custom-build/dojo/dojo.js?b=<%= ReleaseInfo.getVersion() %>"></script>
-	<script type="text/javascript" src="/html/js/dojo/custom-build/build/build.js?b=<%= ReleaseInfo.getVersion() %>"></script>
-  	<script type="text/javascript" src="/html/common/javascript.jsp?b=<%= ReleaseInfo.getVersion() %>"></script>
-	<script type="text/javascript" src="/dwr/engine.js?b=<%= ReleaseInfo.getVersion() %>"></script>
-	<script type="text/javascript" src="/dwr/util.js?b=<%= ReleaseInfo.getVersion() %>"></script>
-	<script type="text/javascript" src="/dwr/interface/TemplateAjax.js?b=<%= ReleaseInfo.getVersion() %>"></script>
-	<script type="text/javascript" src="/dwr/interface/HostAjax.js?b=<%= ReleaseInfo.getVersion() %>"></script>
-	<script type="text/javascript" src="/dwr/interface/ContainerAjax.js?b=<%= ReleaseInfo.getVersion() %>"></script>
-	<script type="text/javascript" src="/dwr/interface/RoleAjax.js?b=<%= ReleaseInfo.getVersion() %>"></script>
-	<script type="text/javascript" src="/dwr/interface/BrowserAjax.js?b=<%= ReleaseInfo.getVersion() %>"></script>
-	<script type="text/javascript" src="/dwr/interface/UserAjax.js?b=<%= ReleaseInfo.getVersion() %>"></script>
-	<script type="text/javascript" src="/dwr/interface/InodeAjax.js?b=<%= ReleaseInfo.getVersion() %>"></script>
+	<script type="text/javascript" src="/html/js/dojo/custom-build/dojo/dojo.js"></script>
+	<script type="text/javascript" src="/html/js/dojo/custom-build/build/build.js"></script>
+  	<script type="text/javascript" src="/html/common/javascript.jsp"></script>
+	<script type="text/javascript" src="/dwr/engine.js"></script>
+	<script type="text/javascript" src="/dwr/util.js"></script>
+	<script type="text/javascript" src="/dwr/interface/TemplateAjax.js"></script>
+	<script type="text/javascript" src="/dwr/interface/HostAjax.js"></script>
+	<script type="text/javascript" src="/dwr/interface/ContainerAjax.js"></script>
+	<script type="text/javascript" src="/dwr/interface/RoleAjax.js"></script>
+	<script type="text/javascript" src="/dwr/interface/BrowserAjax.js"></script>
+	<script type="text/javascript" src="/dwr/interface/UserAjax.js"></script>
+	<script type="text/javascript" src="/dwr/interface/InodeAjax.js"></script>
 
 
 	<script type="text/javascript">
