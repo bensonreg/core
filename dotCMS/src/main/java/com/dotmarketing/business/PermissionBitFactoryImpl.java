@@ -3,12 +3,7 @@ package com.dotmarketing.business;
 import com.dotcms.content.elasticsearch.business.ContentletIndexAPI;
 import com.dotcms.content.elasticsearch.business.ESContentletIndexAPI;
 import com.dotcms.content.elasticsearch.util.ESClient;
-import com.dotmarketing.beans.Host;
-import com.dotmarketing.beans.Identifier;
-import com.dotmarketing.beans.Inode;
-import com.dotmarketing.beans.Permission;
-import com.dotmarketing.beans.PermissionReference;
-import com.dotmarketing.beans.PermissionType;
+import com.dotmarketing.beans.*;
 import com.dotmarketing.cms.factories.PublicCompanyFactory;
 import com.dotmarketing.common.db.DotConnect;
 import com.dotmarketing.db.DbConnectionFactory;
@@ -2287,6 +2282,13 @@ public class PermissionBitFactoryImpl extends PermissionFactory {
 						}else if(perm instanceof Contentlet || perm instanceof Event){
 							type = Contentlet.class.getCanonicalName();
 						}
+					}
+				} else if ( permissionable instanceof PermissionableProxy ) {
+
+					PermissionableProxy permissionableProxy = (PermissionableProxy) permissionable;
+					type = permissionableProxy.getType();
+					if ( permissionableProxy.isHost() ) {
+						type = Host.class.getCanonicalName();
 					}
 				}
 

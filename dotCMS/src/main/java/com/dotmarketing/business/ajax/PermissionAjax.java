@@ -308,22 +308,8 @@ public class PermissionAjax {
 			language = APILocator.getLanguageAPI().getDefaultLanguage().getId();
 		}
 
-		Permissionable permissionable = APILocator.getPermissionAPI().
+		return APILocator.getPermissionAPI().
 				resolvePermissionable(assetId, user, language, respectFrontendRoles);
-
-		if ( null != permissionable ) {
-			if ( permissionable instanceof Contentlet ) {
-
-				Contentlet foundContentlet = (Contentlet) permissionable;
-
-				if ( foundContentlet.isHost() ) {
-					permissionable = APILocator.getHostAPI().find(foundContentlet.getIdentifier(),
-							user, respectFrontendRoles);
-				}
-			}
-		}
-
-		return permissionable;
 	}
 
 	  public void permissionIndividually(String assetId, Long languageId) throws Exception {
