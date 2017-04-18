@@ -60,7 +60,7 @@ public class HazelcastUtil {
                     try {
                         Logger.info(this, "Using hazel resource " + xmlFilePath);
                         is = getClass().getClassLoader().getResourceAsStream(xmlFilePath);
-                        URL url = getClass().getResource(xmlFilePath);
+                        URL url = getClass().getClassLoader().getResource(xmlFilePath);
                         try {
                             Logger.info(this, "hazelFile path " + new FileInputStream(url.toURI().getPath()));
                         } catch (FileNotFoundException e) {
