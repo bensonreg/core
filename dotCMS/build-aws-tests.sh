@@ -92,7 +92,8 @@ cp dotserver/tomcat/webapps/ROOT/dotsecure/logs/test/*.xml tests
 
 # Run Integration tests
 cd core/dotCMS
-./gradlew integrationTest -PdatabaseType=$DB_TYPE  || true
+./gradlew integrationTest -PdatabaseType=$DB_TYPE --tests *VersionableAPITest || true
+
 cd ../..
 cp core/dotCMS/build/test-results/integrationTest/*.xml tests
 
